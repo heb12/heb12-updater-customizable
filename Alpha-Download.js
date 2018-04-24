@@ -1,1 +1,46 @@
+var fs = require('fs');
+var http = require('http');
+function newfile(name,content) {
+fs.writeFile(name, content, function (err) {
+  if (err) throw err;
+  console.log('Saved!');
+});
+}
+function getAPI(site,callback) {
+  let rtrn = "";
+const postData = querystring.stringify({
+  'msg': 'Hello World!'
+});
 
+const options = {
+  hostname: site,
+  port: 80,
+  path: '',
+  method: 'GET',
+  headers: {
+    'Content-Type': 'data/application',
+    'Content-Length': Buffer.byteLength(postData)
+  }
+};
+
+const req = http.request(options, (res) => {
+  console.log(`STATUS: ${res.statusCode}`);
+  console.log(`HEADERS: ${JSON.stringify(res.headers)}`);
+  res.setEncoding('utf8');
+  res.on('data', (chunk) => {
+    callback(`${chunk}`);
+  });
+  res.on('end', () => {
+    console.log('No more data in response.');
+  });
+});
+
+req.on('error', (e) => {
+  console.error(`problem with request: ${e.message}`);
+});
+
+// write data to request body
+req.write(postData);
+req.end();
+  return rtrn;
+}
