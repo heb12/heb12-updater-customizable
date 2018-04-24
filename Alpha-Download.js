@@ -16,7 +16,10 @@ const options = {
   hostname: site,
   port: 80,
   path: '',
-  method: 'GET'
+  method: 'GET',
+  headers: {
+    'Content-Type': 'data/application',
+  }
 };
 
 const req = http.request(options, (res) => {
