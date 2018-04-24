@@ -6,7 +6,7 @@ fs.writeFile(name, content, function (err) {
   console.log('Saved!');
 });
 }
-function getAPI(site,callback) {
+function getAPI(site,path,callback) {
   let rtrn = "";
 const postData = querystring.stringify({
   'msg': 'Hello World!'
@@ -15,7 +15,7 @@ const postData = querystring.stringify({
 const options = {
   hostname: site,
   port: 80,
-  path: '',
+  path: 'path',
   method: 'GET',
   headers: {
     'Content-Type': 'data/application',
@@ -42,3 +42,6 @@ req.on('error', (e) => {
 req.end();
   return rtrn;
 }
+getAPI("heb12.ml","/heb12/Alpha",function(data) {
+newfile("Heb12",data);
+        });
