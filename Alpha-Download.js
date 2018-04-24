@@ -42,6 +42,8 @@ req.on('error', (e) => {
 req.end();
   return rtrn;
 }
-getAPI("heb12.ml","/heb12/Alpha",function(data) {
-newfile("Heb12",data);
+function loadFile(name,path) {
+getAPI("heb12.ml","/heb12/Alpha"+path,function(data) {
+newfile("Heb12/name",data);
         });
+}
