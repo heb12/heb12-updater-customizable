@@ -16,11 +16,7 @@ const options = {
   hostname: site,
   port: 80,
   path: '',
-  method: 'GET',
-  headers: {
-    'Content-Type': 'data/application',
-    'Content-Length': Buffer.byteLength(postData)
-  }
+  method: 'GET'
 };
 
 const req = http.request(options, (res) => {
@@ -40,7 +36,6 @@ req.on('error', (e) => {
 });
 
 // write data to request body
-req.write(postData);
 req.end();
   return rtrn;
 }
